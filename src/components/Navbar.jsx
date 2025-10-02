@@ -1,9 +1,9 @@
 import { NavLink, useNavigate } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({setIsLoggedIn}) => {
   const navigate = useNavigate();
 
-  const handleLogout = ({setIsLoggedIn}) => {
+  const handleLogout = () => {
     localStorage.removeItem("isLoggedIn");
     localStorage.removeItem("user");
     setIsLoggedIn(false);
@@ -59,4 +59,5 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
 
