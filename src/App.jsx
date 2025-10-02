@@ -7,9 +7,7 @@ import Topics from "./components/topics";
 import Progress from "./components/Progress";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(
-    localStorage.getItem("isLoggedIn") === "true"
-  );
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const initialTopics = [
     {
       name: "Algorithms",
@@ -84,18 +82,15 @@ function App() {
   const [topics, setTopics] = useState(initialTopics);
 
   // keep state in sync if localStorage changes
-  useEffect(() => {
-    const checkLogin = () => {
-      setIsLoggedIn(localStorage.getItem("isLoggedIn") === "true");
-    };
-
-    window.addEventListener("storage", checkLogin);
-    return () => window.removeEventListener("storage", checkLogin);
+   useEffect(() => {
+    const storedLogin = localStorage.getItem("isLoggedIn")==="true";
+    setIsLoggedIn(storedLogin);
+    
   }, []);
 
   return (
     <BrowserRouter>
-      {isLoggedIn && <Navbar />}
+      {isLoggedIn && <Navbar setIsLoggedIn={setIsLoggedIn} />}
       <Routes>
         {/* Login page */}
         <Route
