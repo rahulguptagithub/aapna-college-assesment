@@ -89,7 +89,7 @@ function App() {
   }, []);
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/aapna-college-assesment">
       {isLoggedIn && <Navbar setIsLoggedIn={setIsLoggedIn} />}
       <Routes>
         {/* Login page */}
